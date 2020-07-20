@@ -6,7 +6,7 @@ const KnexSessionStore = require("connect-session-knex")(session);
 
 const usersRouter = require("../users/users-router.js");
 const authRouter = require("../auth/auth-router.js");
-const dbConnection = require("../database/connection.js");
+const dbConnection = require("../data/db-config");
 const authenticate = require("../auth/authenticate-middleware.js");
 
 const server = express();
@@ -33,7 +33,7 @@ const sessionConfiguration = {
 server.use(session(sessionConfiguration)); // enables session support
 server.use(helmet());
 server.use(express.json());
-server.use(cors());
+// server.use(cors());
 
 server.use("/api/users", authenticate, usersRouter);
 server.use("/api/auth", authRouter);
